@@ -26,6 +26,8 @@ import javax.swing.JOptionPane;
 
 /* @author Jhonsef Pires
  * 
+ * Será usada pela classe ListaAP
+ * 
  * Este elemento é o pacote de informações sobre uma aula prática individual
  * Pensando nesta classe como um pacote que armazena apenas a informação básica
  * sobre uma aula prática. Seguindo o seguinte caminho: Armazena apenas o id da Aula, 
@@ -36,42 +38,54 @@ import javax.swing.JOptionPane;
 public class AulaPratica {
 	private String idAP = null;
 	private Date dataAP = null;
-	private short completa = 0;
-	private short lancada = 0;
-	private char categoria = '?';
+	private short completa = 0;//Quando os dados do aluno e do instrutor estiverem disponíveis, terá o valor 2
+	private short lancada = 0;//Quando os dados do registro do aluno e do intrutor forem lançados
+	private char categoria = '?';//c-carro, m-moto
+	
+	
+	public AulaPratica(String idAP, short completa, short lancada, char categoria) {
+		this.setIdAP(idAP);
+		//A data será gerada automaticamente
+		this.gerarData();
+		this.setCompleta(completa);
+		this.setLancada(lancada);
+		this.setCategoria(categoria);
+	}
 	
 	
 	
 	/* Encapsulamento */
+		//O encapsulamento está recebendo o CAST de dados
 		public String getIdAP() {
 			return idAP;
 		}
 		public void setIdAP(String idAP) {
-			this.idAP = idAP;
+			this.idAP = (String)idAP;
 		}
 		public Date getDataAP() {
 			return dataAP;
 		}
-		//public void setDataAP(Date dataAP) {
-		//	this.dataAP = dataAP;
-		//}
+		/* Não vi segurança em usar esse método
+		public void setDataAP(Date dataAP) {
+			this.dataAP = dataAP;
+		}*/
 		public short getCompleta() {
 			return completa;
 		}
-		public void setCompleta(short completa) {
-			this.completa = completa;
+		public void setCompleta(short completa) {//Adicionar o valor que vem
+			this.completa = (short) (this.completa + completa); 
 		}
 		public short getLancada() {
 			return lancada;
 		}
 		public void setLancada(short lancada) {
-			this.lancada = lancada;
+			this.lancada = (short) (this.lancada + lancada);
 		}
 		public char getCategoria() {
 			return categoria;
 		}
 		public void setCategoria(char categoria) {
-			this.categoria = categoria;
+			this.categoria = (char)categoria;
 		}
 	/* Fim do Encapsulamento */
 	
@@ -80,6 +94,10 @@ public class AulaPratica {
 						/* Outros métodos */
 		
 	/* ********************************************************** */
+	
+	private void gerarData(){
+		this.dataAP = new Date();
+	}
 		
 	/* Funcionamento básico deste método:
 	 * 1 - Ele recebe uma lista contendo todos os membros
@@ -112,6 +130,17 @@ public class AulaPratica {
 		}
 		return false;
 	}
+	
+	
+	/* É preciso pensar em um modelo de apresentação da aula na tela, 
+	 * onde haja apena informação relevante, como: Data da aula, nome e codigo
+	 * de professor e aluno, com seus cpfs e numeros de renach, além, é claro de
+	 * mostrar qual a categoria da aula.
+	 * 
+	 * */
+	
+	
+	
 	
 	
 }

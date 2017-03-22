@@ -38,6 +38,16 @@ public class RegistroAP {
 		this.data = new Date();
 	}
 	
+	//Este construtor será usado quando for registar o Intrutor e não haver necessidade de colocar o código gerado
+	public RegistroAP(char tipoRegistro, char categoriaRegistro, Date data, String codAulaRegistro) {
+		this.tipoRegistro = tipoRegistro;
+		this.categoriaRegistro = categoriaRegistro;
+		this.data = data;
+		this.codAulaRegistro = codAulaRegistro;
+	}
+
+
+
 	/* Início Encapsulameto */
 	
 		//Retornar o código do registro
@@ -47,7 +57,7 @@ public class RegistroAP {
 		//Alterar o código do registro
 		/* Esta parte é importante quando se quer adicionar o cod do instrutor, quando não fora adicionado */
 		public void setCodRegistro(String codRegistro) {
-			this.codRegistro = codRegistro;
+			this.codRegistro = (String)codRegistro;
 		}
 		//Retornar o tipo do Registro
 		public char getTipoRegistro() {
@@ -56,7 +66,7 @@ public class RegistroAP {
 		//Alterar o tipo do Registro
 		/* Tomar cuidado com esse método abaixo */
 		public void setTipoRegistro(char tipoRegistro) {
-			this.tipoRegistro = tipoRegistro;
+			this.tipoRegistro = (char)tipoRegistro;
 		}
 		//Retornar a categoria do Registro
 		public char getCategoriaRegistro() {
@@ -65,14 +75,14 @@ public class RegistroAP {
 		//Alterar a categora do Registro
 		/* Tomar cuidado com esse método abaixo */
 		public void setCategoriaRegistro(char categoriaRegistro) {
-			this.categoriaRegistro = categoriaRegistro;
+			this.categoriaRegistro = (char)categoriaRegistro;
 		}
 		//Id do registro
 		public String getCodAulaRegistro() {
 			return codAulaRegistro;
 		}
 		public void setCodAulaRegistro(String codAulaRegistro) {
-			this.codAulaRegistro = codAulaRegistro;
+			this.codAulaRegistro = (String)codAulaRegistro;
 		}
 	/* Fim Encapsulamento */
 	
