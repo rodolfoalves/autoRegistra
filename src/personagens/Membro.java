@@ -6,22 +6,27 @@ import acessorios.RegistroAP;
 
 /* Esta classe define os seres Humanos que compõe o grupo de membros do
  * sistema, com a diferença entre alunos e instrutores dada por um atributo
- * 
+ * Regras:
+ * 1 - Nenhum dos dados pode faltar aqui.
  * */
 
 
-
 public class Membro extends Pessoa{
-	private String nRenach = null;//Como é um atributo específico desta classe, o nº do Renach Está Aqui
-	private ArrayList<RegistroAP> ficha;
-	private char aliasMembro;// a - aluno, i - instrutor
+	/*Como é um atributo específico desta classe */
+	private String nRenach = null;
+	/* Este Array serve para armazenar todos os registros de aulas Práticas do membro */
+	private ArrayList<RegistroAP> fichaAP;
+	private ArrayList<RegistroAP> fichaAT;
+	/* a - aluno, i - instrutor */
+	private char aliasMembro;
+	
 	
 	public Membro(String nome, String cpf, String fone, String renach, char alias) {
 		super(nome, cpf, fone);
 		this.setnRenach(renach);
 		this.setAliasMembro(alias);
 	}	
-	//Este caso é muito útil quando se carregar as informações do XML
+	/* Este caso é muito útil quando se carregar as informações do XML, mas ainda preciso avaliar isso */
 	public Membro(String nome, String cpf, String fone, char alias, ArrayList<RegistroAP> f) {
 		super(nome, cpf, fone);
 		this.setAliasMembro(alias);
@@ -36,10 +41,10 @@ public class Membro extends Pessoa{
 			this.nRenach = nRenach;
 		}
 		public ArrayList<RegistroAP> getFicha() {
-			return ficha;
+			return fichaAP;
 		}
 		public void setFicha(ArrayList<RegistroAP> ficha) {
-			this.ficha = ficha;
+			this.fichaAP = ficha;
 		}
 		public char getAliasMembro() {
 			return aliasMembro;
@@ -56,21 +61,21 @@ public class Membro extends Pessoa{
 
 	/* ********************************************************** */
 
-	//Adicionar novo registro	
+	/* Adicionar novo registro */	
 	public void addRegistro(RegistroAP nR){//nR - new Register
-		this.ficha.add(nR);
+		this.fichaAP.add(nR);
 	}
-	//Remover um registro por id
+	/* Remover um registro por id */
 	public boolean delRegistro(String id){
-		for(RegistroAP r : this.ficha){
+		for(RegistroAP r : this.fichaAP){
 			if(id == r.getCodAulaRegistro()){
-				this.ficha.remove(r);
+				this.fichaAP.remove(r);
 				return true;
 			}
 		}
 		return false;
 	}
-	
+	/* Saber que tipo de membro este é */
 	public String tipoMembro(){
 		if(this.getAliasMembro() == 'a'){
 			return "Aluno";
@@ -89,7 +94,7 @@ public class Membro extends Pessoa{
 	
 	//Consultar registro por id, talvez seja util
 	public RegistroAP verRegistro(String id){
-		for(RegistroAP r : this.ficha){
+		for(RegistroAP r : this.fichaAP){
 			if(id == r.getCodAulaRegistro()){
 				//Se o id for igual ao do que eu estou procurando, é só retornar ele
 				return r;
