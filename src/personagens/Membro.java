@@ -30,7 +30,7 @@ public class Membro extends Pessoa{
 	public Membro(String nome, String cpf, String fone, char alias, ArrayList<RegistroAP> f) {
 		super(nome, cpf, fone);
 		this.setAliasMembro(alias);
-		this.setFicha(f);
+		this.setFichaAP(f);
 	}
 	
 	/* Encapsulamento */
@@ -40,12 +40,18 @@ public class Membro extends Pessoa{
 		public void setnRenach(String nRenach) {
 			this.nRenach = nRenach;
 		}
-		public ArrayList<RegistroAP> getFicha() {
+		public ArrayList<RegistroAP> getFichaAP() {
 			return fichaAP;
 		}
-		public void setFicha(ArrayList<RegistroAP> ficha) {
-			this.fichaAP = ficha;
-		}
+		public void setFichaAP(ArrayList<RegistroAP> fichaAP) {
+			this.fichaAP = fichaAP;
+		}	
+		//public ArrayList<RegistroAT> getFichaAT() {
+			//return fichaAT;
+		//}
+		//public void setFichaAT(ArrayList<RegistroAT> ficha) {
+			//this.fichaAT = ficha;
+		//}
 		public char getAliasMembro() {
 			return aliasMembro;
 		}
@@ -85,24 +91,25 @@ public class Membro extends Pessoa{
 		}
 		return "Inválida";
 	}
-	
-	
-	//Consultar membro
+	/* Destrui fichas */
+	public void zerarFicha(){
+		this.getFichaAP().clear();
+		this.fichaAT.clear();
+	}
+	/* Consultar membro */
 	public String toString(){
 		return super.toString() + "\nRenach: " + this.getnRenach() + "\nModalidade: " + this.tipoMembro();
 	}
 	
-	//Consultar registro por id, talvez seja util
+	/* Consultar registro por id, talvez seja util */
 	public RegistroAP verRegistro(String id){
 		for(RegistroAP r : this.fichaAP){
 			if(id == r.getCodAulaRegistro()){
-				//Se o id for igual ao do que eu estou procurando, é só retornar ele
+				/* Se o id for igual ao do que eu estou procurando, é só retornar ele */
 				return r;
 			}
 		}
-		//Para o caso de não encontrar o cara
+		/* Para o caso de não encontrar o cara */
 		return null;
 	}
-	
-	
 }
